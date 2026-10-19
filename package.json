@@ -1,0 +1,15 @@
+{
+  "name": "trustpoint-labs-marp-theme",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Marp theme for Trustpoint Labs",
+  "main": "index.js",
+  "scripts": {
+    "build": "mkdir -p dist && marp example.md --theme ./trustpoint-labs.css --pdf --allow-local-files -o dist/trustpoint-labs-example.pdf",
+    "build:diagrams": "mmdc -i assets/example-flow.mmd -o assets/example-flow.svg -b transparent"
+  },
+  "devDependencies": {
+    "@marp-team/marp-cli": "^4.5.1",
+    "@mermaid-js/mermaid-cli": "^12.0.0"
+  }
+}
