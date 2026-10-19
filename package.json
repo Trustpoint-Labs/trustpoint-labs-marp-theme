@@ -5,11 +5,16 @@
   "description": "Marp theme for Trustpoint Labs",
   "main": "index.js",
   "scripts": {
-    "build": "mkdir -p dist && marp example.md --theme ./trustpoint-labs.css --pdf --allow-local-files -o dist/trustpoint-labs-example.pdf",
-    "build:diagrams": "mmdc -i assets/example-flow.mmd -o assets/example-flow.svg -b transparent"
+    "build": "npm run check:overflow && mkdir -p dist && marp example.md --theme ./trustpoint-labs.css --pdf --allow-local-files -o dist/trustpoint-labs-example.pdf",
+    "build:diagrams": "mmdc -i assets/example-flow.mmd -o assets/example-flow.svg -b transparent",
+    "check:overflow": "node scripts/check-overflow.cjs",
+    "test:overflow": "node --test tests/overflow.test.cjs"
   },
   "devDependencies": {
     "@marp-team/marp-cli": "^4.5.1",
-    "@mermaid-js/mermaid-cli": "^12.0.0"
+    "@marp-team/marp-core": "^4.4.0",
+    "@mermaid-js/mermaid-cli": "^12.0.0",
+    "@puppeteer/browsers": "^2.13.2",
+    "puppeteer-core": "^24.43.1"
   }
 }

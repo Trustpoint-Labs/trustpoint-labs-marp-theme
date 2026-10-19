@@ -227,3 +227,122 @@ section.no-logo h1 { max-width: 100%; }
 section[data-logo="true"]::before { display: block; }
 section[data-logo="false"]::before { display: none; }
 section[data-logo="false"] h1 { max-width: 100%; }
+
+/* Trustpoint Labs reusable Markdown-first slide layouts.
+   Add these rules to the END of trustpoint-labs.css.
+   All layouts use ordinary Markdown without unsafe HTML. */
+
+/* Shared grid components: direct, top-level Markdown lists. */
+section.cards-2 > ul, section.cards-3 > ul,
+section.metrics > ul, section.steps > ol,
+section.timeline > ol {
+  display: grid;
+  list-style: none;
+  padding: 0;
+  margin: 26px 0 0;
+  width: 100%;
+  align-items: stretch;
+  gap: 18px;
+}
+section.cards-2 > ul { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+section.cards-3 > ul, section.metrics > ul { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+section.cards-2 > ul > li, section.cards-3 > ul > li {
+  min-width: 0;
+  margin: 0;
+  padding: 25px 24px;
+  border: 1px solid #DFE5EB;
+  border-top: 5px solid #0756A5;
+  background: #F8F9FA;
+  border-radius: 8px;
+  break-inside: avoid;
+  font-size: 25px;
+  line-height: 1.3;
+}
+section.cards-2 > ul > li strong, section.cards-3 > ul > li strong { color: #0756A5; display: block; font-size: 30px; margin-bottom: 12px; }
+section.cards-2 > ul > li em, section.cards-3 > ul > li em { font-style: normal; color: #506070; font-size: 22px; }
+
+/* Metrics: bold metric, short label below. */
+section.metrics > ul > li {
+  min-width: 0;
+  list-style: none;
+  text-align: left;
+  background: #F0F5FA;
+  border-left: 5px solid #0756A5;
+  border-radius: 6px;
+  padding: 28px 22px;
+  margin: 0;
+  font-size: 24px;
+  line-height: 1.28;
+}
+section.metrics > ul > li strong { display: block; color: #0756A5; font-size: 53px; line-height: 1.06; margin-bottom: 14px; }
+section.metrics > ul > li em { font-style: normal; color: #566573; font-size: 19px; }
+
+/* Steps: numbered cards; no additional markup. */
+section.steps > ol { grid-template-columns: repeat(4, minmax(0, 1fr)); counter-reset: tp-step; }
+section.steps > ol > li {
+  counter-increment: tp-step;
+  position: relative;
+  min-width: 0;
+  list-style: none;
+  margin: 0;
+  background: #F8F9FA;
+  border: 1px solid #DFE5EB;
+  border-radius: 7px;
+  padding: 55px 18px 23px;
+  font-size: 21px;
+  line-height: 1.3;
+}
+section.steps > ol > li::before {
+  content: counter(tp-step, decimal-leading-zero);
+  position: absolute;
+  top: 16px;
+  left: 18px;
+  color: #0756A5;
+  font-weight: 800;
+  font-size: 29px;
+}
+section.steps > ol > li strong { display: block; font-size: 25px; margin-bottom: 10px; }
+
+/* Timeline: horizontal milestones, 3 or 4 items. */
+section.timeline > ol { grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 10px; }
+section.timeline > ol > li {
+  position: relative;
+  min-width: 0;
+  list-style: none;
+  margin: 0;
+  border-top: 5px solid #0756A5;
+  padding: 24px 12px 0 0;
+  font-size: 22px;
+  line-height: 1.28;
+}
+section.timeline > ol > li::before {
+  content: '';
+  position: absolute;
+  top: -11px;
+  left: 0;
+  width: 17px;
+  height: 17px;
+  background: #0756A5;
+  border-radius: 50%;
+}
+section.timeline > ol > li strong { display: block; color: #0756A5; font-size: 24px; margin-bottom: 7px; }
+
+/* Side-by-side comparison in an ordinary Markdown table. */
+section.split > table { margin-top: 24px; width: 100%; table-layout: fixed; }
+section.split > table th { width: 50%; color: #0756A5; font-size: 27px; border-bottom: 3px solid #0756A5; text-align: left; padding: 16px 18px; }
+section.split > table td { vertical-align: top; font-size: 24px; line-height: 1.32; padding: 22px 18px; background: #F8F9FA; border: 1px solid #DFE5EB; }
+
+/* Blue/black slides: maintain legible contrast. */
+section.blue.cards-2 > ul > li, section.blue.cards-3 > ul > li,
+section.blue.metrics > ul > li, section.blue.steps > ol > li,
+section.black.cards-2 > ul > li, section.black.cards-3 > ul > li,
+section.black.metrics > ul > li, section.black.steps > ol > li {
+  color: #101114;
+}
+section.blue.timeline > ol > li, section.black.timeline > ol > li { border-color: #FFFFFF; }
+section.blue.timeline > ol > li::before, section.black.timeline > ol > li::before { background: #FFFFFF; }
+section.blue.timeline > ol > li strong, section.black.timeline > ol > li strong { color: #FFFFFF; }
+
+/* Small screens / overfull decks should use compact class intentionally. */
+section.compact.cards-2 > ul > li, section.compact.cards-3 > ul > li { font-size: 20px; padding: 17px; }
+section.compact.steps > ol > li, section.compact.timeline > ol > li { font-size: 18px; }
